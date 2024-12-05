@@ -6,7 +6,7 @@ const Footer = () => {
 	const currentYear = new Date().getFullYear();
 
 	return (
-		<div className={s.copyright}><FaAddressBook className={s.icon} /> Phonebook | React Redux, Redux Toolkit | {currentYear}</div>
+		<div className={s.copyright}><FaAddressBook className={s.icon} /> Phonebook | React, Redux Toolkit | {currentYear}</div>
 	)
 }
 
