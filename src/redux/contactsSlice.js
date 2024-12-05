@@ -1,8 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, isAnyOf } from "@reduxjs/toolkit"
+import { addContact, fetchContacts, deleteContact, editContactName, editContactNumber } from "./contactsOps";
 
 // Початковий стан редюсера слайсу
 const initialState = {
-	items: []
+	items: [],
+	loading: false,
+	error: null
 }
 
 const slice = createSlice({
@@ -10,36 +13,76 @@ const slice = createSlice({
 	name: "contacts",
 	// Початковий стан редюсера слайсу
 	initialState,
-	// Об'єкт case-редюсерів (Кожен case-редюсер відповідає за один конкретний екшен і змінює стан)
-	// У властивості reducers оголошуються case-редюсери - функції, які визначають, як змінювати стан слайсу у відповідь на певний екшен (action). 
 	reducers: {
-		addContact: (state, action) => {
-			state.items.push(action.payload);
+		clearError: (state) => {
+			state.error = null; // Скидаємо помилку
 		},
-		deleteContact: (state, action) => {
-			// Повертаємо новий масив відфільтрованих об'єктів, які задовольняють умові (item.id !== action.payload)
-			state.items = state.items.filter(item => item.id !== action.payload);
-		},
-		editContactName: (state, action) => {
-			const contact = state.items.find(item => item.id === action.payload.id);
-			contact.name = action.payload.newName;
-		},
-		editContactNumber: (state, action) => {
-			const contact = state.items.find(item => item.id === action.payload.id);
-			contact.number = action.payload.newNumber;
-		}
+	},
+	// Додаємо обробку зовнішніх екшенів
+	// Властивість extraReducers використовується для оголошення редюсерів, які обробляють «зовнішні» екшени, тобто ті, що НЕ створені через reducers
+	// Це корисно для обробки екшенів із життєвим циклом запиту (pending, fulfilled, rejected), які автоматично створює createAsyncThunk.
+	extraReducers: (builder) => {
+		builder
+			.addCase(fetchContacts.fulfilled, (state, action) => {
+				state.loading = false;
+				state.error = null;
+				state.items = action.payload;
+			})
+			.addCase(addContact.fulfilled, (state, action) => {
+				state.loading = false;
+				state.error = null;
+				state.items.push(action.payload);
+			})
+			.addCase(deleteContact.fulfilled, (state, action) => {
+				state.loading = false;
+				state.error = null;
+				// Повертаємо новий масив відфільтрованих об'єктів, які задовольняють умові (item.id !== action.payload.id)
+				state.items = state.items.filter(item => item.id !== action.payload.id);
+			})
+			.addCase(editContactName.fulfilled, (state, action) => {
+				state.loading = false;
+				state.error = null;
+				const contact = state.items.find(item => item.id === action.payload.id);
+				contact.name = action.payload.name;
+			})
+			.addCase(editContactNumber.fulfilled, (state, action) => {
+				state.loading = false;
+				state.error = null;
+				const contact = state.items.find(item => item.id === action.payload.id);
+				contact.number = action.payload.number;
+			})
+			// builder.addMatcher(predicate, reducer)
+			// Метод addMatcher дозволяє обробляти дії, що відповідають певній умові (predicate). Це корисно, якщо потрібно групувати обробку кількох дій.
+			.addMatcher(
+				// isAnyOf - допоміжна функція, яка спрощує створення предикатів для addMatcher. Вона повертає true, якщо дія відповідає будь-якій з переданих дій.
+				isAnyOf(
+					fetchContacts.pending,
+					addContact.pending,
+					deleteContact.pending,
+					editContactName.pending,
+					editContactNumber.pending
+				),
+				(state) => {
+					state.loading = true;
+				}
+			)
+			.addMatcher(
+				isAnyOf(
+					fetchContacts.rejected,
+					addContact.rejected,
+					deleteContact.rejected,
+					editContactName.rejected,
+					editContactNumber.rejected
+				),
+				(state, action) => {
+					state.error = action.payload;
+					state.loading = false;
+				}
+			)
 	}
 });
 
-// Функції-селектори для використання в useSelector
-export const selectContacts = (state) => state.contacts.items; // Повертає список контактів з властивості items
-// 1. state - загальний стан нашого додатка
-// 2. contacts - ім'я слайсу
-// 3. items - значення властивості items з initialState цього слайсу
-
-
-// Експортуємо екшени
-export const { addContact, deleteContact, editContactName, editContactNumber } = slice.actions;
+export const { clearError } = slice.actions;
 
 // Експортуємо редюсер слайсу
 // У властивість reducer зберігається редюсер слайсу який експортуємо із файла і передаємо при створенні стора.

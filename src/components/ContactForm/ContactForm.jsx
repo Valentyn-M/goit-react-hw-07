@@ -2,11 +2,10 @@ import { ErrorMessage, Field, Form, Formik } from "formik"
 import s from "./ContactForm.module.css"
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
-import { nanoid } from "@reduxjs/toolkit";
 import { FaPhone, FaUserLarge } from "react-icons/fa6";
 import { MdOutlinePersonAdd } from "react-icons/md";
 import { useRef } from "react";
+import { addContact } from "../../redux/contactsOps";
 
 const ContactForm = () => {
 
@@ -19,8 +18,6 @@ const ContactForm = () => {
 
 	const handleSubmit = (values, actions) => {
 		const newContact = {
-			// Додаємо ідентифікатор в об'єкт нового контакту задопомогою nanoid (вбулований в Redux Toolkit )
-			id: nanoid(),
 			name: values.name,
 			number: values.number,
 		}

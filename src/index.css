@@ -85,4 +85,9 @@ body {
 	color: #E2E5E9;
 	font-family: 'Roboto', 'Arial', sans-serif;
 	background-image: linear-gradient(rgba(28, 28, 29, 0.96), rgba(28, 28, 29, 0.96)), url('./img/bg.png');
+
+	&.lock {
+		overflow: hidden;
+		touch-action: none;
+	}
 }

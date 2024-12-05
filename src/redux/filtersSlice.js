@@ -14,9 +14,6 @@ const slice = createSlice({
 	}
 });
 
-// Функція-селектор, що повертає значення фільтра з властивості name
-export const selectNameFilter = (state) => state.filters.name;
-
 export const { changeFilter } = slice.actions;
 
 export const filtersReducer = slice.reducer;

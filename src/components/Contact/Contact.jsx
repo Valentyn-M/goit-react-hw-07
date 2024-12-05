@@ -1,14 +1,14 @@
 // Для того щоб сповістити Redux про те, що в інтерфейсі відбулася якась подія, необхідно відправити екшен.
 // Для цього у бібліотеці React Redux є хук useDispatch(), який повертає посилання на функцію надсилання екшенів dispatch
 import { useDispatch, useSelector } from "react-redux";
-// Імпортуємо екшен
-import { deleteContact } from "../../redux/contactsSlice";
 import s from "./Contact.module.css"
 import { FaUserLarge, FaPhone } from "react-icons/fa6";
 import { MdOutlineEdit, MdOutlinePersonRemove } from "react-icons/md";
-import { selectActiveContactId, selectModalName, selectModalNumber, toggleModalName, toggleModalNumber } from "../../redux/modalsSlice";
+import { toggleModalName, toggleModalNumber } from "../../redux/modalsSlice";
 import ModalName from "../ModalName/ModalName";
 import ModalNumber from "../ModalNumber/ModalNumber";
+import { deleteContact } from "../../redux/contactsOps";
+import { selectActiveContactId, selectModalName, selectModalNumber } from "../../redux/selectors";
 
 const Contact = ({ contact }) => {
 
@@ -40,7 +40,7 @@ const Contact = ({ contact }) => {
 					<button className={s.fieldBtn} onClick={handleOpenModalNumber}><MdOutlineEdit /><span>Edit</span></button>
 				</li>
 			</ul>
-			{/* При клику передаємо колбек-функцію, в якій ми викликаємо екшен та передаємо дані для payload (removeContact(id) і відправляємо екшен за допомогою dispatch) */}
+			{/* При клику передаємо колбек-функцію, в якій ми викликаємо екшен та передаємо дані для payload (deleteContacts(id) і відправляємо екшен за допомогою dispatch) */}
 			<button className={s.deleteBtn} onClick={() => { dispatch(deleteContact(id)) }}>
 				<MdOutlinePersonRemove className={s.deleteBtnIcon} /><span>Delete contact</span>
 			</button>

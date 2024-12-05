@@ -1,17 +1,21 @@
 import Modal from 'react-modal';
 import s from './ModalNumber.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectModalNumber, toggleModalName, toggleModalNumber } from '../../redux/modalsSlice';
+import { toggleModalName, toggleModalNumber } from '../../redux/modalsSlice';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { FaPhone } from 'react-icons/fa6';
-import { editContactNumber } from '../../redux/contactsSlice';
 import * as Yup from "yup";
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { IoCloseOutline } from 'react-icons/io5';
+import { editContactNumber } from '../../redux/contactsOps';
+import { selectModalNumber } from '../../redux/selectors';
+import { useEffect } from 'react';
 
 const customStyles = {
 	overlay: {
-		backgroundColor: 'rgba(0, 0, 0, 0.75)',
+		backgroundColor: 'rgba(0, 0, 0, 0.65)',
+		backdropFilter: 'blur(5px)',
+		WebkitBackdropFilter: 'blur(10px)',
 	},
 	content: {
 		padding: "0",
@@ -38,7 +42,7 @@ const ModalNumber = ({ contact }) => {
 	}
 
 	const handleSubmit = (values, actions) => {
-		dispatch(editContactNumber({ id: contact.id, newNumber: values.number }));
+		dispatch(editContactNumber({ contactId: contact.id, newNumber: values.number }));
 		actions.resetForm();
 		dispatch(toggleModalNumber({ isActive: false, contactId: null })); // Закриваємо модальне вікно та скидаємо ID
 	}
@@ -46,6 +50,13 @@ const ModalNumber = ({ contact }) => {
 	const contactSchema = Yup.object().shape({
 		number: Yup.string().matches(/^[0-9\s-().+]*$/, "Only numbers and allowed symbols are permitted").min(3, "Too Short!").max(50, "Too Long!").required("Required"),
 	});
+
+	useEffect(() => {
+		document.body.classList.add("lock");
+		return () => {
+			document.body.classList.remove("lock");
+		};
+	}, []);
 
 	return (
 		<Modal

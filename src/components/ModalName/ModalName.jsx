@@ -1,17 +1,21 @@
 import Modal from 'react-modal';
 import s from './ModalName.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectModalName, toggleModalName } from '../../redux/modalsSlice';
+import { toggleModalName } from '../../redux/modalsSlice';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { FaUserLarge } from 'react-icons/fa6';
-import { editContactName } from '../../redux/contactsSlice';
 import * as Yup from "yup";
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { IoCloseOutline } from 'react-icons/io5';
+import { editContactName } from '../../redux/contactsOps';
+import { selectModalName } from '../../redux/selectors';
+import { useEffect } from 'react';
 
 const customStyles = {
 	overlay: {
-		backgroundColor: 'rgba(0, 0, 0, 0.75)',
+		backgroundColor: 'rgba(0, 0, 0, 0.65)',
+		backdropFilter: 'blur(5px)',
+		WebkitBackdropFilter: 'blur(10px)',
 	},
 	content: {
 		padding: "0",
@@ -38,7 +42,7 @@ const ModalName = ({ contact }) => {
 	}
 
 	const handleSubmit = (values, actions) => {
-		dispatch(editContactName({ id: contact.id, newName: values.name }));
+		dispatch(editContactName({ contactId: contact.id, newName: values.name }));
 		actions.resetForm();
 		dispatch(toggleModalName({ isActive: false, contactId: null })); // Закриваємо модальне вікно та скидаємо ID
 	}
@@ -46,6 +50,13 @@ const ModalName = ({ contact }) => {
 	const contactSchema = Yup.object().shape({
 		name: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required"),
 	});
+
+	useEffect(() => {
+		document.body.classList.add("lock");
+		return () => {
+			document.body.classList.remove("lock");
+		};
+	}, []);
 
 	return (
 		<Modal
