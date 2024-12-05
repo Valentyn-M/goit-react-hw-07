@@ -1,0 +1,68 @@
+.contactForm {
+	display: flex;
+	justify-content: center;
+}
+
+.formWrap {
+	flex-basis: 350px;
+}
+
+.form {
+	border-radius: 8px;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	background-color: #252728;
+}
+
+.label {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.labelName {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.field {
+	border-radius: 5px;
+	padding: 7px 10px;
+	color: #E2E5E9;
+	background-color: #333334;
+	transition: background-color 0.3s ease 0s;
+
+	&:hover,
+	&:focus {
+		background-color: #484848;
+	}
+
+	&:focus {
+		outline: 2px solid #0866FF;
+	}
+}
+
+.btn {
+	background-color: #0866FF;
+	border-radius: 5px;
+	padding: 7px 10px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0 auto;
+	outline: none;
+	transition: background-color 0.3s ease 0s;
+
+	&:hover,
+	&:focus {
+		background-color: #4A74F3;
+	}
+}
+
+.error {
+	color: #F1344C;
+	font-size: 14px;
+}

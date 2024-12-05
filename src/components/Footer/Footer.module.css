@@ -1,0 +1,13 @@
+.copyright {
+	font-size: 18px;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon {
+	margin-right: 5px;
+	top: -1px;
+	position: relative;
+}

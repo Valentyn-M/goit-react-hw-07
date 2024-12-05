@@ -1,0 +1,75 @@
+.contact {
+	padding: 15px;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 20px;
+	background-color: #252728;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.field {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	gap: 15px;
+}
+
+.fieldItem {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.fieldValue {
+	word-break: break-all;
+}
+
+.icon {
+	flex-shrink: 0;
+}
+
+.fieldBtn,
+.deleteBtn {
+	background-color: #3B3D3E;
+	border-radius: 5px;
+	padding: 7px 10px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	transition: background-color 0.3s ease 0s;
+
+	&:hover,
+	&:focus {
+		background-color: #505153;
+	}
+}
+
+.fieldBtn {
+	&:focus {
+		outline: 2px solid #0866FF;
+	}
+}
+
+.deleteBtn {
+	background-color: #0866FF;
+	margin: 0 auto;
+	transition: background-color 0.3s ease 0s;
+	outline: none;
+
+	&:hover,
+	&:focus {
+		background-color: #4A74F3;
+	}
+}
+
+.deleteBtnIcon {
+	transform: rotate(360deg);
+}
