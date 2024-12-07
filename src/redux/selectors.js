@@ -9,6 +9,8 @@ export const selectContacts = (state) => state.contacts.items;
 // 3. items - значення властивості items з initialState цього слайсу
 export const selectLoading = state => state.contacts.loading;
 export const selectError = state => state.contacts.error;
+export const selectSuccessAdd = state => state.contacts.successAdd;
+export const selectSuccessDelete = state => state.contacts.successDelete;
 
 // Селекти з modalsSlice
 export const selectModalName = (state) => state.modals.isActiveModalName;

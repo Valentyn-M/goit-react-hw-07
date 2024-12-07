@@ -5,7 +5,9 @@ import { addContact, fetchContacts, deleteContact, editContactName, editContactN
 const initialState = {
 	items: [],
 	loading: false,
-	error: null
+	error: null,
+	successAdd: false,
+	successDelete: false,
 }
 
 const slice = createSlice({
@@ -16,6 +18,9 @@ const slice = createSlice({
 	reducers: {
 		clearError: (state) => {
 			state.error = null; // Скидаємо помилку
+		},
+		clearSuccess: (state, action) => {
+			state[action.payload] = false;	// Скидаємо інфу про успішність операції
 		},
 	},
 	// Додаємо обробку зовнішніх екшенів
@@ -31,11 +36,13 @@ const slice = createSlice({
 			.addCase(addContact.fulfilled, (state, action) => {
 				state.loading = false;
 				state.error = null;
+				state.successAdd = true;
 				state.items.push(action.payload);
 			})
 			.addCase(deleteContact.fulfilled, (state, action) => {
 				state.loading = false;
 				state.error = null;
+				state.successDelete = true;
 				// Повертаємо новий масив відфільтрованих об'єктів, які задовольняють умові (item.id !== action.payload.id)
 				state.items = state.items.filter(item => item.id !== action.payload.id);
 			})
@@ -82,7 +89,7 @@ const slice = createSlice({
 	}
 });
 
-export const { clearError } = slice.actions;
+export const { clearError, clearSuccess } = slice.actions;
 
 // Експортуємо редюсер слайсу
 // У властивість reducer зберігається редюсер слайсу який експортуємо із файла і передаємо при створенні стора.
