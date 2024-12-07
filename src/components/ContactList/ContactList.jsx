@@ -40,7 +40,12 @@ const ContactList = () => {
 				position="top-center"
 				reverseOrder={false}
 				toastOptions={{
-					success: { duration: 2500 }
+					success: {
+						duration: 2500,
+						style: {
+							background: '#E2E5E9',
+						},
+					}
 				}}
 			/>
 		</>
