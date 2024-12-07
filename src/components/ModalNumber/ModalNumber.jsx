@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 import s from './ModalNumber.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleModalName, toggleModalNumber } from '../../redux/modalsSlice';
+import { toggleModalNumber } from '../../redux/modalsSlice';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { FaPhone } from 'react-icons/fa6';
 import * as Yup from "yup";
@@ -78,7 +78,7 @@ const ModalNumber = ({ contact }) => {
 						<button
 							className={s.btnClose}
 							type="button"
-							onClick={() => dispatch(toggleModalName({ isActive: false, contactId: null }))}>
+							onClick={() => dispatch(toggleModalNumber({ isActive: false, contactId: null }))}>
 							<IoCloseOutline />
 						</button>
 					</Form>

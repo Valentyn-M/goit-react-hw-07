@@ -71,5 +71,5 @@
 }
 
 .deleteBtnIcon {
-	transform: rotate(360deg);
+	transform: scaleX(-1);
 }

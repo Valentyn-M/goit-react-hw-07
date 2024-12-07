@@ -3,12 +3,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import s from "./Contact.module.css"
 import { FaUserLarge, FaPhone } from "react-icons/fa6";
-import { MdOutlineEdit, MdOutlinePersonRemove } from "react-icons/md";
+import { MdOutlinePersonRemove } from "react-icons/md";
 import { toggleModalName, toggleModalNumber } from "../../redux/modalsSlice";
 import ModalName from "../ModalName/ModalName";
 import ModalNumber from "../ModalNumber/ModalNumber";
 import { deleteContact } from "../../redux/contactsOps";
 import { selectActiveContactId, selectModalName, selectModalNumber } from "../../redux/selectors";
+import { TbEdit } from "react-icons/tb";
 
 const Contact = ({ contact }) => {
 
@@ -33,11 +34,11 @@ const Contact = ({ contact }) => {
 			<ul className={s.list}>
 				<li className={s.field}>
 					<div className={s.fieldItem}><FaUserLarge className={s.icon} /><span className={s.fieldValue}>{name}</span></div>
-					<button className={s.fieldBtn} onClick={handleOpenModalName}><MdOutlineEdit /><span>Edit</span></button>
+					<button className={s.fieldBtn} onClick={handleOpenModalName}><TbEdit /></button>
 				</li>
 				<li className={s.field}>
 					<div className={s.fieldItem}><FaPhone className={s.icon} /><span className={s.fieldValue}>{number}</span></div>
-					<button className={s.fieldBtn} onClick={handleOpenModalNumber}><MdOutlineEdit /><span>Edit</span></button>
+					<button className={s.fieldBtn} onClick={handleOpenModalNumber}><TbEdit /></button>
 				</li>
 			</ul>
 			{/* При клику передаємо колбек-функцію, в якій ми викликаємо екшен та передаємо дані для payload (deleteContacts(id) і відправляємо екшен за допомогою dispatch) */}
