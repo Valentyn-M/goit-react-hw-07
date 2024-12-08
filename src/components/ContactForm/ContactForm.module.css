@@ -1,25 +1,33 @@
 .contactForm {
-	display: flex;
-	justify-content: center;
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+	border-radius: 8px;
+	padding: 20px 15px;
+	background-color: #252728;
 }
 
-.formWrap {
-	flex-basis: 350px;
+.title {
+	text-align: center;
+	margin-bottom: 15px;
+	font-size: 22px;
+	font-weight: 500;
+	color: #5aa7ff;
 }
 
 .form {
-	border-radius: 8px;
-	padding: 20px 15px;
 	display: flex;
 	flex-direction: column;
-	gap: 25px;
-	background-color: #252728;
+	gap: 30px;
 }
 
 .label {
 	display: flex;
-	flex-direction: column;
-	gap: 8px;
+	gap: 12px;
+}
+
+.icon {
+	font-size: 20px;
 }
 
 .labelName {
@@ -28,27 +36,94 @@
 	gap: 8px;
 }
 
+.fieldWrap {
+	width: 100%;
+	position: relative;
+}
+
 .field {
 	border-radius: 5px;
-	padding: 7px 10px;
-	color: #E2E5E9;
-	background-color: #333334;
-	transition: background-color 0.3s ease 0s;
+	padding: 12px 15px;
+	width: 100%;
+	color: #fff;
+	background-color: #252728;
+	border: 1px solid #fff;
+	border-color: rgba(255, 255, 255, .7);
+	outline: none;
+	transition: color 0.3s ease 0s, border-color 0.3s ease 0s, box-shadow 0.3s ease;
+	font-size: 16px;
 
 	&:hover,
 	&:focus {
-		background-color: #484848;
+		border-color: #0866FF;
 	}
 
 	&:focus {
-		outline: 2px solid #0866FF;
+		box-shadow: 0 0 0 1px #0866FF;
 	}
+
+	.fieldWrap.error & {
+		border-color: #F02849;
+		color: #F02849;
+
+		&:focus {
+			box-shadow: 0 0 0 1px #F02849;
+		}
+	}
+}
+
+.floatingLabel {
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	transform: translateY(-50%);
+	padding: 0 5px;
+	background-color: #252728;
+	color: rgba(255, 255, 255, .7);
+	transition: top 0.3s ease, transform 0.3s ease, font-size 0.3s ease, color 0.3s ease 0s;
+	pointer-events: none;
+
+	.fieldWrap.error & {
+		color: #F02849;
+	}
+}
+
+.field:focus+.floatingLabel {
+	top: 0;
+	left: 10px;
+	transform: translateY(-50%);
+	font-size: 12px;
+	color: #5aa7ff !important;
+
+	.fieldWrap.error & {
+		color: #F02849 !important;
+	}
+}
+
+.field:not(:placeholder-shown)+.floatingLabel {
+	top: 0;
+	left: 10px;
+	transform: translateY(-50%);
+	font-size: 12px;
+	color: rgba(255, 255, 255, .7);
+
+	.fieldWrap.error & {
+		color: #F02849;
+	}
+}
+
+.floatingError {
+	color: #F02849;
+	font-size: 12px;
+	position: absolute;
+	top: calc(100% + 5px);
+	left: 15px;
 }
 
 .btn {
 	background-color: #0866FF;
 	border-radius: 5px;
-	padding: 7px 10px;
+	padding: 10px 15px;
 	display: flex;
 	align-items: center;
 	gap: 6px;
@@ -60,9 +135,4 @@
 	&:focus {
 		background-color: #4A74F3;
 	}
-}
-
-.error {
-	color: #F1344C;
-	font-size: 14px;
 }

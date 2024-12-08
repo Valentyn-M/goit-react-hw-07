@@ -14,8 +14,8 @@ const SearchBox = () => {
 	return (
 		<div className={s.searchWrap}>
 			<div className={s.search}>
+				<h3 className={s.title}>Search by name</h3>
 				<label className={s.label}>
-					<span>Search by name</span>
 					<div className={s.fieldWrap}>
 						<input
 							className={s.field}

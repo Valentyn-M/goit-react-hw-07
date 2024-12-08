@@ -40,33 +40,33 @@
 .deleteBtn {
 	background-color: #3B3D3E;
 	border-radius: 5px;
-	padding: 7px 10px;
+	padding: 8px 10px;
 	display: flex;
 	align-items: center;
 	gap: 6px;
-	transition: background-color 0.3s ease 0s;
+	outline: none;
+	transition: background-color 0.3s ease 0s, box-shadow 0.3s ease, color 0.3s ease 0s;
 
-	&:hover,
-	&:focus {
+	&:hover {
 		background-color: #505153;
 	}
-}
 
-.fieldBtn {
 	&:focus {
-		outline: 2px solid #0866FF;
+		background-color: #505153;
+		box-shadow: 0 0 0 2px #0866FF;
 	}
 }
 
 .deleteBtn {
-	background-color: #0866FF;
+	padding: 8px 15px;
 	margin: 0 auto;
-	transition: background-color 0.3s ease 0s;
-	outline: none;
+	color: #F02849;
 
 	&:hover,
 	&:focus {
-		background-color: #4A74F3;
+		background-color: #F02849;
+		box-shadow: none;
+		color: #fff;
 	}
 }
 

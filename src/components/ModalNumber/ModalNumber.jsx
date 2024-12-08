@@ -68,20 +68,25 @@ const ModalNumber = ({ contact }) => {
 		>
 			<div className={s.modalWrap}>
 				<Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={contactSchema}>
-					<Form className={s.form}>
-						<h3 className={s.title}><FaPhone className={s.icon} /><span>Edit contact number</span></h3>
-						<label className={s.label}>
-							<Field className={s.field} type="text" name="number" autoComplete="off" />
-							<ErrorMessage className={s.error} name="number" component="span" />
-						</label>
-						<button className={s.btn} type="submit"><IoMdCheckmarkCircleOutline /><span>Ok</span></button>
-						<button
-							className={s.btnClose}
-							type="button"
-							onClick={() => dispatch(toggleModalNumber({ isActive: false, contactId: null }))}>
-							<IoCloseOutline />
-						</button>
-					</Form>
+					{({ errors, touched }) => (
+						<Form className={s.form}>
+							<h3 className={s.title}><FaPhone className={s.icon} /><span>Edit contact number</span></h3>
+							<label className={s.label}>
+								<div className={`${s.fieldWrap} ${errors.number && touched.number ? s.error : ""}`}>
+									<Field className={s.field} type="text" name="number" id="number" placeholder=" " autoComplete="off" />
+									<span className={s.floatingLabel}>Number</span>
+									<ErrorMessage className={s.floatingError} name="number" component="span" />
+								</div>
+							</label>
+							<button className={s.btn} type="submit"><IoMdCheckmarkCircleOutline /><span>Ok</span></button>
+							<button
+								className={s.btnClose}
+								type="button"
+								onClick={() => dispatch(toggleModalNumber({ isActive: false, contactId: null }))}>
+								<IoCloseOutline />
+							</button>
+						</Form>
+					)}
 				</Formik>
 			</div>
 		</Modal>

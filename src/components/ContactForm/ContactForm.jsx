@@ -2,10 +2,11 @@ import { ErrorMessage, Field, Form, Formik } from "formik"
 import s from "./ContactForm.module.css"
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { FaPhone, FaUserLarge } from "react-icons/fa6";
+import { FaRegUser } from "react-icons/fa";
 import { MdOutlinePersonAdd } from "react-icons/md";
 import { useRef } from "react";
 import { addContact } from "../../redux/contactsOps";
+import { FiPhone } from "react-icons/fi";
 
 const ContactForm = () => {
 
@@ -38,23 +39,30 @@ const ContactForm = () => {
 
 	return (
 		<div className={s.contactForm}>
-			<div className={s.formWrap}>
-				<Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={contactSchema}>
+			<h3 className={s.title}>Add new contact</h3>
+			<Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={contactSchema}>
+				{({ errors, touched }) => (
 					<Form className={s.form}>
-						<label className={s.label}>
-							<div className={s.labelName}><FaUserLarge className={s.icon} /><span>Name</span></div>
-							<Field className={s.field} type="text" name="name" autoComplete="off" />
-							<ErrorMessage className={s.error} name="name" component="span" />
+						<label className={s.label} htmlFor="name">
+							<div className={s.labelName}><FaRegUser className={s.icon} /></div>
+							<div className={`${s.fieldWrap} ${errors.name && touched.name ? s.error : ""}`}>
+								<Field className={s.field} type="text" name="name" id="name" placeholder=" " autoComplete="off" />
+								<span className={s.floatingLabel}>Name</span>
+								<ErrorMessage className={s.floatingError} name="name" component="span" />
+							</div>
 						</label>
-						<label className={s.label}>
-							<div className={s.labelName}><FaPhone className={s.icon} /><span>Number</span></div>
-							<Field className={s.field} type="text" name="number" autoComplete="off" />
-							<ErrorMessage className={s.error} name="number" component="span" />
+						<label className={s.label} htmlFor="number">
+							<div className={s.labelName}><FiPhone className={s.icon} /></div>
+							<div className={`${s.fieldWrap} ${errors.number && touched.number ? s.error : ""}`}>
+								<Field className={s.field} type="text" name="number" id="number" placeholder=" " autoComplete="off" />
+								<span className={s.floatingLabel}>Number</span>
+								<ErrorMessage className={s.floatingError} name="number" component="span" />
+							</div>
 						</label>
 						<button className={s.btn} type="submit" ref={buttonRef}><MdOutlinePersonAdd /><span>Add contact</span></button>
 					</Form>
-				</Formik>
-			</div>
+				)}
+			</Formik>
 		</div>
 	)
 }
