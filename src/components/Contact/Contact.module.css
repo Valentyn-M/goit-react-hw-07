@@ -61,7 +61,10 @@
 
 .deleteBtn {
 	padding: 8px 15px;
-	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
 	color: #F02849;
 	gap: 8px;
 

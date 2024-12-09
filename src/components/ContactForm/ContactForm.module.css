@@ -131,6 +131,8 @@
 	padding: 10px 15px;
 	display: flex;
 	align-items: center;
+	justify-content: center;
+	width: 100%;
 	gap: 8px;
 	margin: 0 auto;
 	outline: none;
