@@ -2,11 +2,9 @@ import { ErrorMessage, Field, Form, Formik } from "formik"
 import s from "./ContactForm.module.css"
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { FaRegUser } from "react-icons/fa";
-import { MdOutlinePersonAdd } from "react-icons/md";
+import { MdOutlinePersonAdd, MdOutlinePersonOutline, MdOutlinePhone } from "react-icons/md";
 import { useRef } from "react";
 import { addContact } from "../../redux/contactsOps";
-import { FiPhone } from "react-icons/fi";
 
 const ContactForm = () => {
 
@@ -44,16 +42,16 @@ const ContactForm = () => {
 				{({ errors, touched }) => (
 					<Form className={s.form}>
 						<label className={s.label} htmlFor="name">
-							<div className={s.labelName}><FaRegUser className={s.icon} /></div>
 							<div className={`${s.fieldWrap} ${errors.name && touched.name ? s.error : ""}`}>
+								<MdOutlinePersonOutline className={s.fieldIcon} />
 								<Field className={s.field} type="text" name="name" id="name" placeholder=" " autoComplete="off" />
 								<span className={s.floatingLabel}>Name</span>
 								<ErrorMessage className={s.floatingError} name="name" component="span" />
 							</div>
 						</label>
 						<label className={s.label} htmlFor="number">
-							<div className={s.labelName}><FiPhone className={s.icon} /></div>
 							<div className={`${s.fieldWrap} ${errors.number && touched.number ? s.error : ""}`}>
+								<MdOutlinePhone className={s.fieldIcon} />
 								<Field className={s.field} type="text" name="number" id="number" placeholder=" " autoComplete="off" />
 								<span className={s.floatingLabel}>Number</span>
 								<ErrorMessage className={s.floatingError} name="number" component="span" />

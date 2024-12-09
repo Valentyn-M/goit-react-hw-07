@@ -11,7 +11,7 @@ import { clearSuccess } from "../../redux/contactsSlice";
 const ContactList = () => {
 
 	// Отримуємо значення Складового селектору - Відфільтровані контакти
-	const filteredContacts = useSelector(selectFilteredContacts)
+	const filteredContacts = useSelector(selectFilteredContacts);
 
 	const isSuccessAdd = useSelector(selectSuccessAdd);
 	const isSuccessDelete = useSelector(selectSuccessDelete);

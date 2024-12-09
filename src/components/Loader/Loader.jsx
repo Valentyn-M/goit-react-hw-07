@@ -16,7 +16,7 @@ const Loader = () => {
 			<div className={s.loader}>
 				<HashLoader
 					color="#0866FF"
-					size={100}
+					size={80}
 					aria-label="Loading Spinner"
 				/>
 			</div>

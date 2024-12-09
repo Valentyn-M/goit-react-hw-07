@@ -3,13 +3,13 @@ import s from './ModalName.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleModalName } from '../../redux/modalsSlice';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { FaUserLarge } from 'react-icons/fa6';
 import * as Yup from "yup";
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { IoCloseOutline } from 'react-icons/io5';
 import { editContactName } from '../../redux/contactsOps';
 import { selectModalName } from '../../redux/selectors';
 import { useEffect } from 'react';
+import { MdOutlinePersonOutline } from 'react-icons/md';
 
 const customStyles = {
 	overlay: {
@@ -70,8 +70,8 @@ const ModalName = ({ contact }) => {
 				<Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={contactSchema}>
 					{({ errors, touched }) => (
 						<Form className={s.form}>
-							<h3 className={s.title}><FaUserLarge className={s.icon} /><span>Edit contact name</span></h3>
-							<label className={s.label}>
+							<h3 className={s.title}><MdOutlinePersonOutline className={s.icon} /><span>Edit contact name</span></h3>
+							<label className={s.label} htmlFor="name">
 								<div className={`${s.fieldWrap} ${errors.name && touched.name ? s.error : ""}`}>
 									<Field className={s.field} type="text" name="name" id="name" placeholder=" " autoComplete="off" />
 									<span className={s.floatingLabel}>Name</span>

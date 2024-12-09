@@ -34,6 +34,9 @@
 
 .icon {
 	flex-shrink: 0;
+	font-size: 1.1em;
+	position: relative;
+	top: -1px;
 }
 
 .fieldBtn,
@@ -43,7 +46,6 @@
 	padding: 8px 10px;
 	display: flex;
 	align-items: center;
-	gap: 6px;
 	outline: none;
 	transition: background-color 0.3s ease 0s, box-shadow 0.3s ease, color 0.3s ease 0s;
 
@@ -61,6 +63,7 @@
 	padding: 8px 15px;
 	margin: 0 auto;
 	color: #F02849;
+	gap: 8px;
 
 	&:hover,
 	&:focus {
@@ -68,8 +71,11 @@
 		box-shadow: none;
 		color: #fff;
 	}
-}
 
-.deleteBtnIcon {
-	transform: scaleX(-1);
+	.deleteBtnIcon {
+		transform: scaleX(-1);
+		font-size: 1.1em;
+		position: relative;
+		top: -1px;
+	}
 }

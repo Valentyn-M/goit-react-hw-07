@@ -4,6 +4,7 @@ const initialState = {
 	isActiveModalName: false,
 	isActiveModalNumber: false,
 	activeContactId: null, // ID контакту, для якого відкрито модальне вікно
+	isActiveModalDelete: false,
 }
 
 const slice = createSlice({
@@ -18,9 +19,13 @@ const slice = createSlice({
 			state.isActiveModalNumber = action.payload.isActive;
 			state.activeContactId = action.payload.contactId || null; // Зберігаємо ID контакту
 		},
+		toggleModalDelete: (state, action) => {
+			state.isActiveModalDelete = action.payload.isActive;
+			state.activeContactId = action.payload.contactId || null;
+		},
 	}
 });
 
-export const { toggleModalName, toggleModalNumber, closeModalNumber } = slice.actions;
+export const { toggleModalName, toggleModalNumber, closeModalNumber, toggleModalDelete } = slice.actions;
 
 export const modalsReducer = slice.reducer;

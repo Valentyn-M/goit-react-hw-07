@@ -3,13 +3,13 @@ import s from './ModalNumber.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleModalNumber } from '../../redux/modalsSlice';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { FaPhone } from 'react-icons/fa6';
 import * as Yup from "yup";
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { IoCloseOutline } from 'react-icons/io5';
 import { editContactNumber } from '../../redux/contactsOps';
 import { selectModalNumber } from '../../redux/selectors';
 import { useEffect } from 'react';
+import { MdOutlinePhone } from 'react-icons/md';
 
 const customStyles = {
 	overlay: {
@@ -70,8 +70,8 @@ const ModalNumber = ({ contact }) => {
 				<Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={contactSchema}>
 					{({ errors, touched }) => (
 						<Form className={s.form}>
-							<h3 className={s.title}><FaPhone className={s.icon} /><span>Edit contact number</span></h3>
-							<label className={s.label}>
+							<h3 className={s.title}><MdOutlinePhone className={s.icon} /><span>Edit contact number</span></h3>
+							<label className={s.label} htmlFor="number">
 								<div className={`${s.fieldWrap} ${errors.number && touched.number ? s.error : ""}`}>
 									<Field className={s.field} type="text" name="number" id="number" placeholder=" " autoComplete="off" />
 									<span className={s.floatingLabel}>Number</span>

@@ -1,5 +1,5 @@
 import s from "./Header.module.css"
-import { FaAddressBook } from 'react-icons/fa'
+import { FaAddressBook } from "react-icons/fa6";
 
 const Header = () => {
 	return (

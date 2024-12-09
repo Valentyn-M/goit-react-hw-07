@@ -16,14 +16,18 @@ export const selectSuccessDelete = state => state.contacts.successDelete;
 export const selectModalName = (state) => state.modals.isActiveModalName;
 export const selectModalNumber = (state) => state.modals.isActiveModalNumber;
 export const selectActiveContactId = (state) => state.modals.activeContactId;
+export const selectModalDelete = (state) => state.modals.isActiveModalDelete;
 
 // Селект з filtersSlice
-export const selectNameFilter = (state) => state.filters.name;
+export const selectValueFilter = (state) => state.filters.value;
 
 // Фільтруємо контакти та отримуємо новий масив відфільтрованих контактів (ContactList)
 export const selectFilteredContacts = createSelector(
-	[selectContacts, selectNameFilter],
+	[selectContacts, selectValueFilter],
 	(contacts, filterValue) => {
-		return contacts.filter(contact => contact.name.toLowerCase().includes(filterValue.toLocaleLowerCase()));
+		return contacts.filter(contact =>
+			contact.name.toLowerCase().includes(filterValue.toLowerCase()) ||
+			contact.number.toLowerCase().includes(filterValue.toLowerCase())
+		);
 	}
 );

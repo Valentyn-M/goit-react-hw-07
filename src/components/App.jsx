@@ -8,7 +8,7 @@ import SearchBox from './SearchBox/SearchBox'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from '../redux/contactsOps';
 import Loader from './Loader/Loader';
-import { selectError, selectLoading } from '../redux/selectors';
+import { selectContacts, selectError, selectLoading } from '../redux/selectors';
 import ErrorMessage from './ErrorMessage/ErrorMessage';
 
 function App() {
@@ -23,6 +23,8 @@ function App() {
 	const isLoading = useSelector(selectLoading);
 	const error = useSelector(selectError);
 
+	const allContacts = useSelector(selectContacts).length;
+
 	return (
 		<>
 			<header className='header'>
@@ -31,7 +33,7 @@ function App() {
 
 			<main className='main'>
 				<ContactForm />
-				<SearchBox />
+				{allContacts > 1 && <SearchBox />}
 				<ContactList />
 			</main>
 

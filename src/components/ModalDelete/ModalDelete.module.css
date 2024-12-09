@@ -1,0 +1,80 @@
+.modalWrap {
+	width: 400px;
+	max-width: 90vw;
+	max-height: 90vh;
+	padding: 30px 15px 20px;
+	position: relative;
+	background-color: #252728;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	text-align: center;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 12px;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 1.5;
+
+	.icon {
+		font-size: 46px;
+	}
+}
+
+.contactName {
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 1.5;
+	color: #5aa7ff;
+}
+
+.btn {
+	background-color: #3B3D3E;
+	color: #F02849;
+	border-radius: 5px;
+	padding: 9px 15px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	margin: 0 auto;
+	outline: none;
+	transition: background-color 0.3s ease 0s, color 0.3s ease 0s;
+
+	&:hover,
+	&:focus {
+		background-color: #F02849;
+		color: #fff;
+	}
+}
+
+.btnClose {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	font-size: 22px;
+	background-color: #3B3D3E;
+	color: #E2E5E9;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.3s ease 0s;
+
+	&:hover,
+	&:focus {
+		background-color: #4F5052;
+	}
+
+	&:focus {
+		outline: 2px solid #0866FF;
+	}
+}

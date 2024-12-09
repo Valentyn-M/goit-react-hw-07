@@ -1,5 +1,5 @@
 .modalWrap {
-	width: 350px;
+	width: 400px;
 	max-width: 90vw;
 	max-height: 90vh;
 	padding: 30px 15px 20px;
@@ -24,7 +24,7 @@
 	font-weight: 500;
 
 	.icon {
-		font-size: 32px;
+		font-size: 42px;
 	}
 }
 
